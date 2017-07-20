@@ -1,0 +1,29 @@
+
+<div *ngIf="profil">
+    <h2><span>Profil</span> {{profil.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Score</span></dt>
+        <dd>
+            <span>{{profil.score}}</span>
+        </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{profil.userId}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'profil/'+ profil.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

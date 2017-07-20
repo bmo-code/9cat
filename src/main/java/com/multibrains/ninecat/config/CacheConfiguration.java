@@ -41,6 +41,11 @@ public class CacheConfiguration {
             cm.createCache(com.multibrains.ninecat.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.multibrains.ninecat.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.multibrains.ninecat.domain.SocialUserConnection.class.getName(), jcacheConfiguration);
+            cm.createCache(com.multibrains.ninecat.domain.Profil.class.getName(), jcacheConfiguration);
+            cm.createCache(com.multibrains.ninecat.domain.Profil.class.getName() + ".posts", jcacheConfiguration);
+            cm.createCache(com.multibrains.ninecat.domain.Post.class.getName(), jcacheConfiguration);
+            cm.createCache(com.multibrains.ninecat.domain.Post.class.getName() + ".tags", jcacheConfiguration);
+            cm.createCache(com.multibrains.ninecat.domain.Tag.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

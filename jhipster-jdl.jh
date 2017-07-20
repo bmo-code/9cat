@@ -1,0 +1,31 @@
+entity Profil {
+	score Integer
+}
+
+entity Post {
+	image Blob,
+    upvote Integer,
+    downvote Integer
+}
+
+entity Tag {
+	name String
+}
+
+relationship OneToMany {
+	Profil{posts} to Post
+}
+
+relationship OneToOne {
+	Profil{user} to User
+}
+
+relationship ManyToMany {
+	Post{tags} to Tag
+}
+
+paginate all with infinite-scroll
+
+dto * with mapstruct
+// Set service options to all except few
+service all with serviceClass

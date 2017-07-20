@@ -1,11 +1,14 @@
 <div class="d-flex justify-content-center">
     <div class="main-flow">
+        <button class="btn-default" [routerLink]="['/', { outlets: { popup: ['post-new'] } }]"> + Add cat + </button>
         <div *ngFor="let post of posts; let i = index" class="d-flex flex-column">
             <span>{{post.title}}</span>
             <img class="post-img" src="data:image/png;base64,{{post.image}}">
             <span>{{post.score}}</span>
-            <button (click)="upvote(i)">UP</button>
-            <button (click)="downvote(i)">DOWN</button>
+            <div class="d-flex">
+                <button class="btn-success" (click)="upvote(i)">UP</button>
+                <button class="btn-danger" (click)="downvote(i)">DOWN</button>
+            </div>
         </div>
     </div>
 </div>

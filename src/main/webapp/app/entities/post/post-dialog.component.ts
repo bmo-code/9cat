@@ -72,6 +72,7 @@ export class PostDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
+        this.post.score = 0;
         if (this.post.id !== undefined) {
             this.subscribeToSaveResponse(
                 this.postService.update(this.post));

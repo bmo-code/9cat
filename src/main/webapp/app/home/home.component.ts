@@ -7,6 +7,7 @@ import {PostService} from '../entities/post/post.service';
 import {Post} from '../entities/post/post.model';
 import {ResponseWrapper} from '../shared/model/response-wrapper.model';
 import {ITEMS_PER_PAGE} from '../shared/constants/pagination.constants';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'jhi-home',
@@ -27,6 +28,8 @@ export class HomeComponent implements OnInit {
     queryCount: any;
     reverse: any;
     totalItems: number;
+    eventSubscriber: Subscription;
+
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
@@ -50,6 +53,8 @@ export class HomeComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+
+        this.eventSubscriber = this.eventManager.subscribe('postListModification', (response) => this.reset());
 
         this.loadAll();
     }

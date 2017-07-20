@@ -4,6 +4,7 @@ import com.multibrains.ninecat.domain.Authority;
 import com.multibrains.ninecat.domain.User;
 import com.multibrains.ninecat.repository.AuthorityRepository;
 import com.multibrains.ninecat.config.Constants;
+import com.multibrains.ninecat.repository.ProfilRepository;
 import com.multibrains.ninecat.repository.UserRepository;
 import com.multibrains.ninecat.security.AuthoritiesConstants;
 import com.multibrains.ninecat.security.SecurityUtils;
@@ -41,11 +42,14 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository) {
+    private final ProfilService profilService;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, ProfilService profilService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.authorityRepository = authorityRepository;
+        this.profilService = profilService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -99,12 +103,19 @@ public class UserService {
         newUser.setImageUrl(imageUrl);
         newUser.setLangKey(langKey);
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);
         // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
+
+        // Save user and get saved object
+        User savedUser = userRepository.save(newUser);
+
+        // Create and save profile associated
+        profilService.createProfileWithUser(savedUser);
+
+
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }

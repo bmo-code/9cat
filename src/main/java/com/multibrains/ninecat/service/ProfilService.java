@@ -1,6 +1,7 @@
 package com.multibrains.ninecat.service;
 
 import com.multibrains.ninecat.domain.Profil;
+import com.multibrains.ninecat.domain.User;
 import com.multibrains.ninecat.repository.ProfilRepository;
 import com.multibrains.ninecat.service.dto.ProfilDTO;
 import com.multibrains.ninecat.service.mapper.ProfilMapper;
@@ -77,5 +78,13 @@ public class ProfilService {
     public void delete(Long id) {
         log.debug("Request to delete Profil : {}", id);
         profilRepository.delete(id);
+    }
+
+    public void createProfileWithUser(User savedUser) {
+        log.debug("Create new profile with user " + savedUser.toString());
+        Profil profil = new Profil();
+        profil.setUser(savedUser);
+        profil.setScore(0);
+        profilRepository.save(profil);
     }
 }

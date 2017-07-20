@@ -24,3 +24,7 @@ only screen and (                min-resolution: 2dppx) {
     }
 }
 
+.post-img {
+    width: 300px;
+}
+

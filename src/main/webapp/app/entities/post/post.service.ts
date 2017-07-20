@@ -51,4 +51,12 @@ export class PostService {
         const copy: Post = Object.assign({}, post);
         return copy;
     }
+
+    upvote(postId: number) {
+        return this.http.put(`${this.resourceUrl}/score/${postId}`, null);
+    }
+
+    downvote(postId: number) {
+        return this.http.delete(`${this.resourceUrl}/score/${postId}`, null);
+    }
 }

@@ -28,3 +28,10 @@ only screen and (                min-resolution: 2dppx) {
     width: 300px;
 }
 
+.post {
+    padding: 2em;
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+    margin: 2em 0em;
+}
+

@@ -18,9 +18,9 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="image"><span>Image</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="upvote"><span>Upvote</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="downvote"><span>Downvote</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="profilId"><span>Profil</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="title"><span>Title</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="score"><span>Score</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="profileId"><span>Profile</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,11 +31,11 @@
                     <a *ngIf="post.image" (click)="openFile(post.imageContentType, post.image)">open</a>
                     <span *ngIf="post.image">{{post.imageContentType}}, {{byteSize(post.image)}}</span>
                 </td>
-                <td>{{post.upvote}}</td>
-                <td>{{post.downvote}}</td>
+                <td>{{post.title}}</td>
+                <td>{{post.score}}</td>
                 <td>
-                    <div *ngIf="post.profilId">
-                        <a [routerLink]="['../profil', post.profilId  ]" >{{post.profilId}}</a>
+                    <div *ngIf="post.profileId">
+                        <a [routerLink]="['../profile', post.profileId  ]" >{{post.profileId}}</a>
                     </div>
                 </td>
                 <td class="text-right">

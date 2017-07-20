@@ -2,8 +2,8 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "profil",
-            "otherEntityName": "profil",
+            "relationshipName": "profile",
+            "otherEntityName": "profile",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
         },
@@ -23,11 +23,11 @@
             "fieldTypeBlobContent": "any"
         },
         {
-            "fieldName": "upvote",
-            "fieldType": "Integer"
+            "fieldName": "title",
+            "fieldType": "String"
         },
         {
-            "fieldName": "downvote",
+            "fieldName": "score",
             "fieldType": "Integer"
         }
     ],

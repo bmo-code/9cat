@@ -3,18 +3,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } from 'ng-jhipster';
 
-import { Profil } from './profil.model';
-import { ProfilService } from './profil.service';
+import { Profile } from './profile.model';
+import { ProfileService } from './profile.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
-    selector: 'jhi-profil',
-    templateUrl: './profil.component.html'
+    selector: 'jhi-profile',
+    templateUrl: './profile.component.html'
 })
-export class ProfilComponent implements OnInit, OnDestroy {
+export class ProfileComponent implements OnInit, OnDestroy {
 
-    profils: Profil[];
+    profiles: Profile[];
     currentAccount: any;
     eventSubscriber: Subscription;
     itemsPerPage: number;
@@ -26,13 +26,13 @@ export class ProfilComponent implements OnInit, OnDestroy {
     totalItems: number;
 
     constructor(
-        private profilService: ProfilService,
+        private profileService: ProfileService,
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
         private principal: Principal
     ) {
-        this.profils = [];
+        this.profiles = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
         this.links = {
@@ -43,7 +43,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
     }
 
     loadAll() {
-        this.profilService.query({
+        this.profileService.query({
             page: this.page,
             size: this.itemsPerPage,
             sort: this.sort()
@@ -55,7 +55,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
 
     reset() {
         this.page = 0;
-        this.profils = [];
+        this.profiles = [];
         this.loadAll();
     }
 
@@ -68,18 +68,18 @@ export class ProfilComponent implements OnInit, OnDestroy {
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInProfils();
+        this.registerChangeInProfiles();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: Profil) {
+    trackId(index: number, item: Profile) {
         return item.id;
     }
-    registerChangeInProfils() {
-        this.eventSubscriber = this.eventManager.subscribe('profilListModification', (response) => this.reset());
+    registerChangeInProfiles() {
+        this.eventSubscriber = this.eventManager.subscribe('profileListModification', (response) => this.reset());
     }
 
     sort() {
@@ -94,7 +94,7 @@ export class ProfilComponent implements OnInit, OnDestroy {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
         for (let i = 0; i < data.length; i++) {
-            this.profils.push(data[i]);
+            this.profiles.push(data[i]);
         }
     }
 

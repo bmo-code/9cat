@@ -5,9 +5,9 @@ export class Post implements BaseEntity {
         public id?: number,
         public imageContentType?: string,
         public image?: any,
-        public upvote?: number,
-        public downvote?: number,
-        public profilId?: number,
+        public title?: string,
+        public score?: number,
+        public profileId?: number,
         public tags?: BaseEntity[],
     ) {
     }

@@ -2,31 +2,31 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 
-import { Profil } from './profil.model';
+import { Profile } from './profile.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
 
 @Injectable()
-export class ProfilService {
+export class ProfileService {
 
-    private resourceUrl = 'api/profils';
+    private resourceUrl = 'api/profiles';
 
     constructor(private http: Http) { }
 
-    create(profil: Profil): Observable<Profil> {
-        const copy = this.convert(profil);
+    create(profile: Profile): Observable<Profile> {
+        const copy = this.convert(profile);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    update(profil: Profil): Observable<Profil> {
-        const copy = this.convert(profil);
+    update(profile: Profile): Observable<Profile> {
+        const copy = this.convert(profile);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             return res.json();
         });
     }
 
-    find(id: number): Observable<Profil> {
+    find(id: number): Observable<Profile> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             return res.json();
         });
@@ -47,8 +47,8 @@ export class ProfilService {
         return new ResponseWrapper(res.headers, jsonResponse, res.status);
     }
 
-    private convert(profil: Profil): Profil {
-        const copy: Profil = Object.assign({}, profil);
+    private convert(profile: Profile): Profile {
+        const copy: Profile = Object.assign({}, profile);
         return copy;
     }
 }

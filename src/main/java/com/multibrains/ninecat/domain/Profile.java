@@ -11,12 +11,12 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A Profil.
+ * A Profile.
  */
 @Entity
-@Table(name = "profil")
+@Table(name = "profile")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Profil implements Serializable {
+public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,7 +32,7 @@ public class Profil implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "profil")
+    @OneToMany(mappedBy = "profile")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Post> posts = new HashSet<>();
@@ -49,7 +49,7 @@ public class Profil implements Serializable {
         return score;
     }
 
-    public Profil score(Integer score) {
+    public Profile score(Integer score) {
         this.score = score;
         return this;
     }
@@ -62,7 +62,7 @@ public class Profil implements Serializable {
         return user;
     }
 
-    public Profil user(User user) {
+    public Profile user(User user) {
         this.user = user;
         return this;
     }
@@ -75,20 +75,20 @@ public class Profil implements Serializable {
         return posts;
     }
 
-    public Profil posts(Set<Post> posts) {
+    public Profile posts(Set<Post> posts) {
         this.posts = posts;
         return this;
     }
 
-    public Profil addPosts(Post post) {
+    public Profile addPosts(Post post) {
         this.posts.add(post);
-        post.setProfil(this);
+        post.setProfile(this);
         return this;
     }
 
-    public Profil removePosts(Post post) {
+    public Profile removePosts(Post post) {
         this.posts.remove(post);
-        post.setProfil(null);
+        post.setProfile(null);
         return this;
     }
 
@@ -104,11 +104,11 @@ public class Profil implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Profil profil = (Profil) o;
-        if (profil.getId() == null || getId() == null) {
+        Profile profile = (Profile) o;
+        if (profile.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), profil.getId());
+        return Objects.equals(getId(), profile.getId());
     }
 
     @Override
@@ -118,7 +118,7 @@ public class Profil implements Serializable {
 
     @Override
     public String toString() {
-        return "Profil{" +
+        return "Profile{" +
             "id=" + getId() +
             ", score='" + getScore() + "'" +
             "}";

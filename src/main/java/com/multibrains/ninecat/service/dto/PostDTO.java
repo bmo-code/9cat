@@ -18,11 +18,11 @@ public class PostDTO implements Serializable {
     private byte[] image;
     private String imageContentType;
 
-    private Integer upvote;
+    private String title;
 
-    private Integer downvote;
+    private Integer score;
 
-    private Long profilId;
+    private Long profileId;
 
     private Set<TagDTO> tags = new HashSet<>();
 
@@ -50,28 +50,28 @@ public class PostDTO implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public Integer getUpvote() {
-        return upvote;
+    public String getTitle() {
+        return title;
     }
 
-    public void setUpvote(Integer upvote) {
-        this.upvote = upvote;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Integer getDownvote() {
-        return downvote;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setDownvote(Integer downvote) {
-        this.downvote = downvote;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    public Long getProfilId() {
-        return profilId;
+    public Long getProfileId() {
+        return profileId;
     }
 
-    public void setProfilId(Long profilId) {
-        this.profilId = profilId;
+    public void setProfileId(Long profileId) {
+        this.profileId = profileId;
     }
 
     public Set<TagDTO> getTags() {
@@ -108,8 +108,8 @@ public class PostDTO implements Serializable {
         return "PostDTO{" +
             "id=" + getId() +
             ", image='" + getImage() + "'" +
-            ", upvote='" + getUpvote() + "'" +
-            ", downvote='" + getDownvote() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", score='" + getScore() + "'" +
             "}";
     }
 }

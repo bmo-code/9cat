@@ -1,11 +1,11 @@
-entity Profil {
+entity Profile {
 	score Integer
 }
 
 entity Post {
 	image Blob,
-    upvote Integer,
-    downvote Integer
+    title String,
+    score Integer
 }
 
 entity Tag {
@@ -13,11 +13,11 @@ entity Tag {
 }
 
 relationship OneToMany {
-	Profil{posts} to Post
+	Profile{posts} to Post
 }
 
 relationship OneToOne {
-	Profil{user} to User
+	Profile{user} to User
 }
 
 relationship ManyToMany {

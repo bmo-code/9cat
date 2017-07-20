@@ -1,17 +1,17 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Profil } from './profil.model';
-import { ProfilService } from './profil.service';
+import { Profile } from './profile.model';
+import { ProfileService } from './profile.service';
 
 @Injectable()
-export class ProfilPopupService {
+export class ProfilePopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private profilService: ProfilService
+        private profileService: ProfileService
 
     ) {
         this.ngbModalRef = null;
@@ -25,23 +25,23 @@ export class ProfilPopupService {
             }
 
             if (id) {
-                this.profilService.find(id).subscribe((profil) => {
-                    this.ngbModalRef = this.profilModalRef(component, profil);
+                this.profileService.find(id).subscribe((profile) => {
+                    this.ngbModalRef = this.profileModalRef(component, profile);
                     resolve(this.ngbModalRef);
                 });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.profilModalRef(component, new Profil());
+                    this.ngbModalRef = this.profileModalRef(component, new Profile());
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    profilModalRef(component: Component, profil: Profil): NgbModalRef {
+    profileModalRef(component: Component, profile: Profile): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.profil = profil;
+        modalRef.componentInstance.profile = profile;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.ngbModalRef = null;

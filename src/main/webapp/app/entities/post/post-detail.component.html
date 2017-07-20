@@ -11,18 +11,18 @@
                 {{post.imageContentType}}, {{byteSize(post.image)}}
             </div>
         </dd>
-        <dt><span>Upvote</span></dt>
+        <dt><span>Title</span></dt>
         <dd>
-            <span>{{post.upvote}}</span>
+            <span>{{post.title}}</span>
         </dd>
-        <dt><span>Downvote</span></dt>
+        <dt><span>Score</span></dt>
         <dd>
-            <span>{{post.downvote}}</span>
+            <span>{{post.score}}</span>
         </dd>
-        <dt><span>Profil</span></dt>
+        <dt><span>Profile</span></dt>
         <dd>
-            <div *ngIf="post.profilId">
-                <a [routerLink]="['/profil', post.profilId]">{{post.profilId}}</a>
+            <div *ngIf="post.profileId">
+                <a [routerLink]="['/profile', post.profileId]">{{post.profileId}}</a>
             </div>
         </dd>
         <dt><span>Tags</span></dt>

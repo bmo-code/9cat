@@ -4,58 +4,58 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes, CanActiva
 import { UserRouteAccessService } from '../../shared';
 import { JhiPaginationUtil } from 'ng-jhipster';
 
-import { ProfilComponent } from './profil.component';
-import { ProfilDetailComponent } from './profil-detail.component';
-import { ProfilPopupComponent } from './profil-dialog.component';
-import { ProfilDeletePopupComponent } from './profil-delete-dialog.component';
+import { ProfileComponent } from './profile.component';
+import { ProfileDetailComponent } from './profile-detail.component';
+import { ProfilePopupComponent } from './profile-dialog.component';
+import { ProfileDeletePopupComponent } from './profile-delete-dialog.component';
 
-export const profilRoute: Routes = [
+export const profileRoute: Routes = [
     {
-        path: 'profil',
-        component: ProfilComponent,
+        path: 'profile',
+        component: ProfileComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Profils'
+            pageTitle: 'Profiles'
         },
         canActivate: [UserRouteAccessService]
     }, {
-        path: 'profil/:id',
-        component: ProfilDetailComponent,
+        path: 'profile/:id',
+        component: ProfileDetailComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Profils'
+            pageTitle: 'Profiles'
         },
         canActivate: [UserRouteAccessService]
     }
 ];
 
-export const profilPopupRoute: Routes = [
+export const profilePopupRoute: Routes = [
     {
-        path: 'profil-new',
-        component: ProfilPopupComponent,
+        path: 'profile-new',
+        component: ProfilePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Profils'
+            pageTitle: 'Profiles'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
     {
-        path: 'profil/:id/edit',
-        component: ProfilPopupComponent,
+        path: 'profile/:id/edit',
+        component: ProfilePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Profils'
+            pageTitle: 'Profiles'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'
     },
     {
-        path: 'profil/:id/delete',
-        component: ProfilDeletePopupComponent,
+        path: 'profile/:id/delete',
+        component: ProfileDeletePopupComponent,
         data: {
             authorities: ['ROLE_USER'],
-            pageTitle: 'Profils'
+            pageTitle: 'Profiles'
         },
         canActivate: [UserRouteAccessService],
         outlet: 'popup'

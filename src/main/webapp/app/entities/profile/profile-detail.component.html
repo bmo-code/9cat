@@ -1,16 +1,16 @@
 
-<div *ngIf="profil">
-    <h2><span>Profil</span> {{profil.id}}</h2>
+<div *ngIf="profile">
+    <h2><span>Profile</span> {{profile.id}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
         <dt><span>Score</span></dt>
         <dd>
-            <span>{{profil.score}}</span>
+            <span>{{profile.score}}</span>
         </dd>
         <dt><span>User</span></dt>
         <dd>
-            {{profil.userId}}
+            {{profile.userId}}
         </dd>
     </dl>
 
@@ -21,7 +21,7 @@
     </button>
 
     <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'profil/'+ profil.id + '/edit'} }]"
+            [routerLink]="['/', { outlets: { popup: 'profile/'+ profile.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>

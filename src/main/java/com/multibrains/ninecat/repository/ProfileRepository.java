@@ -1,16 +1,16 @@
 package com.multibrains.ninecat.repository;
 
-import com.multibrains.ninecat.domain.Profil;
+import com.multibrains.ninecat.domain.Profile;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
 
 
 /**
- * Spring Data JPA repository for the Profil entity.
+ * Spring Data JPA repository for the Profile entity.
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ProfilRepository extends JpaRepository<Profil,Long> {
+public interface ProfileRepository extends JpaRepository<Profile,Long> {
     
 }

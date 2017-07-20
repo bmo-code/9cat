@@ -7,9 +7,9 @@ import java.util.Set;
 import java.util.Objects;
 
 /**
- * A DTO for the Profil entity.
+ * A DTO for the Profile entity.
  */
-public class ProfilDTO implements Serializable {
+public class ProfileDTO implements Serializable {
 
     private Long id;
 
@@ -50,11 +50,11 @@ public class ProfilDTO implements Serializable {
             return false;
         }
 
-        ProfilDTO profilDTO = (ProfilDTO) o;
-        if(profilDTO.getId() == null || getId() == null) {
+        ProfileDTO profileDTO = (ProfileDTO) o;
+        if(profileDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), profilDTO.getId());
+        return Objects.equals(getId(), profileDTO.getId());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ProfilDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "ProfilDTO{" +
+        return "ProfileDTO{" +
             "id=" + getId() +
             ", score='" + getScore() + "'" +
             "}";

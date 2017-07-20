@@ -3,22 +3,22 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
 import { JhiEventManager  } from 'ng-jhipster';
 
-import { Profil } from './profil.model';
-import { ProfilService } from './profil.service';
+import { Profile } from './profile.model';
+import { ProfileService } from './profile.service';
 
 @Component({
-    selector: 'jhi-profil-detail',
-    templateUrl: './profil-detail.component.html'
+    selector: 'jhi-profile-detail',
+    templateUrl: './profile-detail.component.html'
 })
-export class ProfilDetailComponent implements OnInit, OnDestroy {
+export class ProfileDetailComponent implements OnInit, OnDestroy {
 
-    profil: Profil;
+    profile: Profile;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: JhiEventManager,
-        private profilService: ProfilService,
+        private profileService: ProfileService,
         private route: ActivatedRoute
     ) {
     }
@@ -27,12 +27,12 @@ export class ProfilDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
-        this.registerChangeInProfils();
+        this.registerChangeInProfiles();
     }
 
     load(id) {
-        this.profilService.find(id).subscribe((profil) => {
-            this.profil = profil;
+        this.profileService.find(id).subscribe((profile) => {
+            this.profile = profile;
         });
     }
     previousState() {
@@ -44,10 +44,10 @@ export class ProfilDetailComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    registerChangeInProfils() {
+    registerChangeInProfiles() {
         this.eventSubscriber = this.eventManager.subscribe(
-            'profilListModification',
-            (response) => this.load(this.profil.id)
+            'profileListModification',
+            (response) => this.load(this.profile.id)
         );
     }
 }

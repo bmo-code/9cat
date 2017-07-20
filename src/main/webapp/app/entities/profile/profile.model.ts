@@ -1,6 +1,6 @@
 import { BaseEntity } from './../../shared';
 
-export class Profil implements BaseEntity {
+export class Profile implements BaseEntity {
     constructor(
         public id?: number,
         public score?: number,

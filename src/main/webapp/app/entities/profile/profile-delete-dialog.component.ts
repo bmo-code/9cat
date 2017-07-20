@@ -4,20 +4,20 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { Profil } from './profil.model';
-import { ProfilPopupService } from './profil-popup.service';
-import { ProfilService } from './profil.service';
+import { Profile } from './profile.model';
+import { ProfilePopupService } from './profile-popup.service';
+import { ProfileService } from './profile.service';
 
 @Component({
-    selector: 'jhi-profil-delete-dialog',
-    templateUrl: './profil-delete-dialog.component.html'
+    selector: 'jhi-profile-delete-dialog',
+    templateUrl: './profile-delete-dialog.component.html'
 })
-export class ProfilDeleteDialogComponent {
+export class ProfileDeleteDialogComponent {
 
-    profil: Profil;
+    profile: Profile;
 
     constructor(
-        private profilService: ProfilService,
+        private profileService: ProfileService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager
     ) {
@@ -28,10 +28,10 @@ export class ProfilDeleteDialogComponent {
     }
 
     confirmDelete(id: number) {
-        this.profilService.delete(id).subscribe((response) => {
+        this.profileService.delete(id).subscribe((response) => {
             this.eventManager.broadcast({
-                name: 'profilListModification',
-                content: 'Deleted an profil'
+                name: 'profileListModification',
+                content: 'Deleted an profile'
             });
             this.activeModal.dismiss(true);
         });
@@ -39,22 +39,22 @@ export class ProfilDeleteDialogComponent {
 }
 
 @Component({
-    selector: 'jhi-profil-delete-popup',
+    selector: 'jhi-profile-delete-popup',
     template: ''
 })
-export class ProfilDeletePopupComponent implements OnInit, OnDestroy {
+export class ProfileDeletePopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private profilPopupService: ProfilPopupService
+        private profilePopupService: ProfilePopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            this.profilPopupService
-                .open(ProfilDeleteDialogComponent as Component, params['id']);
+            this.profilePopupService
+                .open(ProfileDeleteDialogComponent as Component, params['id']);
         });
     }
 

@@ -8,11 +8,11 @@
     -->
     <changeSet id="20170720121036-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="profil_id"
+        <addForeignKeyConstraint baseColumnNames="profile_id"
                                  baseTableName="post"
-                                 constraintName="fk_post_profil_id"
+                                 constraintName="fk_post_profile_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="profil"/>
+                                 referencedTableName="profile"/>
 
         <addForeignKeyConstraint baseColumnNames="posts_id"
                                  baseTableName="post_tags"

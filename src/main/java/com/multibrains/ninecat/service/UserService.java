@@ -4,7 +4,6 @@ import com.multibrains.ninecat.domain.Authority;
 import com.multibrains.ninecat.domain.User;
 import com.multibrains.ninecat.repository.AuthorityRepository;
 import com.multibrains.ninecat.config.Constants;
-import com.multibrains.ninecat.repository.ProfilRepository;
 import com.multibrains.ninecat.repository.UserRepository;
 import com.multibrains.ninecat.security.AuthoritiesConstants;
 import com.multibrains.ninecat.security.SecurityUtils;
@@ -42,14 +41,14 @@ public class UserService {
 
     private final AuthorityRepository authorityRepository;
 
-    private final ProfilService profilService;
+    private final ProfileService profileService;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, ProfilService profilService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, AuthorityRepository authorityRepository, ProfileService profileService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.authorityRepository = authorityRepository;
-        this.profilService = profilService;
+        this.profileService = profileService;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -113,7 +112,7 @@ public class UserService {
         User savedUser = userRepository.save(newUser);
 
         // Create and save profile associated
-        profilService.createProfileWithUser(savedUser);
+        profileService.createProfileWithUser(savedUser);
 
 
         log.debug("Created Information for User: {}", newUser);

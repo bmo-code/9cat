@@ -31,14 +31,14 @@ public class Post implements Serializable {
     @Column(name = "image_content_type")
     private String imageContentType;
 
-    @Column(name = "upvote")
-    private Integer upvote;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "downvote")
-    private Integer downvote;
+    @Column(name = "score")
+    private Integer score;
 
     @ManyToOne
-    private Profil profil;
+    private Profile profile;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -81,43 +81,43 @@ public class Post implements Serializable {
         this.imageContentType = imageContentType;
     }
 
-    public Integer getUpvote() {
-        return upvote;
+    public String getTitle() {
+        return title;
     }
 
-    public Post upvote(Integer upvote) {
-        this.upvote = upvote;
+    public Post title(String title) {
+        this.title = title;
         return this;
     }
 
-    public void setUpvote(Integer upvote) {
-        this.upvote = upvote;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Integer getDownvote() {
-        return downvote;
+    public Integer getScore() {
+        return score;
     }
 
-    public Post downvote(Integer downvote) {
-        this.downvote = downvote;
+    public Post score(Integer score) {
+        this.score = score;
         return this;
     }
 
-    public void setDownvote(Integer downvote) {
-        this.downvote = downvote;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    public Profil getProfil() {
-        return profil;
+    public Profile getProfile() {
+        return profile;
     }
 
-    public Post profil(Profil profil) {
-        this.profil = profil;
+    public Post profile(Profile profile) {
+        this.profile = profile;
         return this;
     }
 
-    public void setProfil(Profil profil) {
-        this.profil = profil;
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public Set<Tag> getTags() {
@@ -169,8 +169,8 @@ public class Post implements Serializable {
             "id=" + getId() +
             ", image='" + getImage() + "'" +
             ", imageContentType='" + imageContentType + "'" +
-            ", upvote='" + getUpvote() + "'" +
-            ", downvote='" + getDownvote() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", score='" + getScore() + "'" +
             "}";
     }
 }

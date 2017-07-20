@@ -46,11 +46,11 @@ public class PostResourceIntTest {
     private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
 
-    private static final Integer DEFAULT_UPVOTE = 1;
-    private static final Integer UPDATED_UPVOTE = 2;
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_TITLE = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_DOWNVOTE = 1;
-    private static final Integer UPDATED_DOWNVOTE = 2;
+    private static final Integer DEFAULT_SCORE = 1;
+    private static final Integer UPDATED_SCORE = 2;
 
     @Autowired
     private PostRepository postRepository;
@@ -97,8 +97,8 @@ public class PostResourceIntTest {
         Post post = new Post()
             .image(DEFAULT_IMAGE)
             .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
-            .upvote(DEFAULT_UPVOTE)
-            .downvote(DEFAULT_DOWNVOTE);
+            .title(DEFAULT_TITLE)
+            .score(DEFAULT_SCORE);
         return post;
     }
 
@@ -125,8 +125,8 @@ public class PostResourceIntTest {
         Post testPost = postList.get(postList.size() - 1);
         assertThat(testPost.getImage()).isEqualTo(DEFAULT_IMAGE);
         assertThat(testPost.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
-        assertThat(testPost.getUpvote()).isEqualTo(DEFAULT_UPVOTE);
-        assertThat(testPost.getDownvote()).isEqualTo(DEFAULT_DOWNVOTE);
+        assertThat(testPost.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testPost.getScore()).isEqualTo(DEFAULT_SCORE);
     }
 
     @Test
@@ -162,8 +162,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(post.getId().intValue())))
             .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
-            .andExpect(jsonPath("$.[*].upvote").value(hasItem(DEFAULT_UPVOTE)))
-            .andExpect(jsonPath("$.[*].downvote").value(hasItem(DEFAULT_DOWNVOTE)));
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
+            .andExpect(jsonPath("$.[*].score").value(hasItem(DEFAULT_SCORE)));
     }
 
     @Test
@@ -179,8 +179,8 @@ public class PostResourceIntTest {
             .andExpect(jsonPath("$.id").value(post.getId().intValue()))
             .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
-            .andExpect(jsonPath("$.upvote").value(DEFAULT_UPVOTE))
-            .andExpect(jsonPath("$.downvote").value(DEFAULT_DOWNVOTE));
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
+            .andExpect(jsonPath("$.score").value(DEFAULT_SCORE));
     }
 
     @Test
@@ -203,8 +203,8 @@ public class PostResourceIntTest {
         updatedPost
             .image(UPDATED_IMAGE)
             .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
-            .upvote(UPDATED_UPVOTE)
-            .downvote(UPDATED_DOWNVOTE);
+            .title(UPDATED_TITLE)
+            .score(UPDATED_SCORE);
         PostDTO postDTO = postMapper.toDto(updatedPost);
 
         restPostMockMvc.perform(put("/api/posts")
@@ -218,8 +218,8 @@ public class PostResourceIntTest {
         Post testPost = postList.get(postList.size() - 1);
         assertThat(testPost.getImage()).isEqualTo(UPDATED_IMAGE);
         assertThat(testPost.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
-        assertThat(testPost.getUpvote()).isEqualTo(UPDATED_UPVOTE);
-        assertThat(testPost.getDownvote()).isEqualTo(UPDATED_DOWNVOTE);
+        assertThat(testPost.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testPost.getScore()).isEqualTo(UPDATED_SCORE);
     }
 
     @Test

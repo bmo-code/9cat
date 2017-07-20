@@ -9,7 +9,7 @@ import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { Post } from './post.model';
 import { PostPopupService } from './post-popup.service';
 import { PostService } from './post.service';
-import { Profil, ProfilService } from '../profil';
+import { Profile, ProfileService } from '../profile';
 import { Tag, TagService } from '../tag';
 import { ResponseWrapper } from '../../shared';
 
@@ -22,7 +22,7 @@ export class PostDialogComponent implements OnInit {
     post: Post;
     isSaving: boolean;
 
-    profils: Profil[];
+    profiles: Profile[];
 
     tags: Tag[];
 
@@ -31,7 +31,7 @@ export class PostDialogComponent implements OnInit {
         private dataUtils: JhiDataUtils,
         private alertService: JhiAlertService,
         private postService: PostService,
-        private profilService: ProfilService,
+        private profileService: ProfileService,
         private tagService: TagService,
         private eventManager: JhiEventManager
     ) {
@@ -39,8 +39,8 @@ export class PostDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.profilService.query()
-            .subscribe((res: ResponseWrapper) => { this.profils = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.profileService.query()
+            .subscribe((res: ResponseWrapper) => { this.profiles = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.tagService.query()
             .subscribe((res: ResponseWrapper) => { this.tags = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -106,7 +106,7 @@ export class PostDialogComponent implements OnInit {
         this.alertService.error(error.message, null, null);
     }
 
-    trackProfilById(index: number, item: Profil) {
+    trackProfileById(index: number, item: Profile) {
         return item.id;
     }
 

@@ -29,12 +29,6 @@
                 </a>
                 <ul class="dropdown-menu" ngbDropdownMenu>
                     <li>
-                        <a class="dropdown-item" routerLink="profil" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-                            <span>Profil</span>
-                        </a>
-                    </li>
-                    <li>
                         <a class="dropdown-item" routerLink="post" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span>Post</span>
@@ -44,6 +38,12 @@
                         <a class="dropdown-item" routerLink="tag" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
                             <span>Tag</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" routerLink="profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
+                            <span>Profile</span>
                         </a>
                     </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

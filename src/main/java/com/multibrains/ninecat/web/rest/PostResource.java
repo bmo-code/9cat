@@ -123,4 +123,30 @@ public class PostResource {
         postService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/posts/score/{id}")
+    @Timed
+    public ResponseEntity<Integer> getPostVote(@PathVariable Long id) {
+        log.debug("REST request to get the score of a Post : {}", id);
+        Integer score = postService.getScore(id);
+        return ResponseEntity.ok().body(score);
+    }
+
+    @PutMapping("/posts/score/{id}")
+    @Timed
+    public ResponseEntity<Integer> upVotePost(@PathVariable Long id) {
+        log.debug("REST request to up vote a post {}", id);
+        Integer score = postService.upVoteScore(id);
+        return ResponseEntity.ok().body(score);
+    }
+
+    @DeleteMapping("/posts/score/{id}")
+    @Timed
+    public ResponseEntity<Integer> downVotePost(@PathVariable Long id) {
+        log.debug("REST request to down vote a post {}", id);
+        Integer score = postService.downVoteScore(id);
+        return ResponseEntity.ok().body(score);
+    }
+
+
 }

@@ -78,4 +78,25 @@ public class PostService {
         log.debug("Request to delete Post : {}", id);
         postRepository.delete(id);
     }
+
+    public Integer getScore(Long id) {
+        log.debug("Request to get the score of the post : {}", id);
+        Post post = postRepository.findOne(id);
+        Integer postScore = post.getScore();
+        return postScore;
+    }
+
+    public Integer upVoteScore(Long id) {
+        log.debug("REST request to up vote a post {}", id);
+        Post post = postRepository.findOne(id);
+        post.setScore(post.getScore() + 1);
+        return post.getScore();
+    }
+
+    public Integer downVoteScore(Long id) {
+        log.debug("REST request to down vote a post {}", id);
+        Post post = postRepository.findOne(id);
+        post.setScore(post.getScore() - 1);
+        return post.getScore();
+    }
 }
